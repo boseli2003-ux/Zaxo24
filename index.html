@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="kmr" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>زاخو ٢٤ - ڕێڤەبرنا عەقاراتان</title>
+  
+  <!-- PWA & iOS Meta Tags -->
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="زاخو ٢٤" />
+  <meta name="theme-color" content="#0f172a" />
+  
+  <!-- Tailwind CSS & Lucide Icons -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+  
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;600;700;800&display=swap');
+    * {
+      font-family: 'Vazirmatn', sans-serif;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .pb-safe {
+      padding-bottom: env(safe-area-inset-bottom, 16px);
+    }
+  </style>
+</head>
+<body class="bg-slate-900 text-slate-100 min-h-screen flex justify-center items-center p-0 sm:p-4">
+
+  <!-- Mobile Frame / App Container -->
+  <div class="w-full max-w-md bg-slate-950 h-screen sm:h-[844px] sm:rounded-[40px] shadow-2xl flex flex-col overflow-hidden border border-slate-800 relative">
+    
+    <!-- Top iOS Status & Header Bar -->
+    <header class="bg-slate-900/90 backdrop-blur-md border-b border-slate-800 px-5 pt-8 pb-4 flex items-center justify-between sticky top-0 z-20">
+      <div class="flex items-center gap-3">
+        <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-emerald-500 to-teal-400 flex items-center justify-center shadow-lg shadow-emerald-500/20">
+          <i data-lucide="building-2" class="w-6 h-6 text-slate-950 stroke-[2.5]"></i>
+        </div>
+        <div>
+          <h1 class="text-xl font-black tracking-tight text-white flex items-center gap-2">
+            زاخو ٢٤
+            <span class="text-[10px] font-bold bg-emerald-500/10 text-emerald-400 px-2 py-0.5 rounded-full border border-emerald-500/20">PRO</span>
+          </h1>
+          <p class="text-xs text-slate-400">ڕێڤەبرنا عەقاراتێن زاخۆ</p>
+        </div>
+      </div>
+      <button onclick="toggleiOSGuide()" class="p-2 rounded-xl bg-slate-800/80 text-emerald-400 hover:bg-slate-800 transition text-xs font-bold flex items-center gap-1 border border-slate-700">
+        <i data-lucide="share" class="w-4 h-4"></i>
+        <span>PWA</span>
+      </button>
+    </header>
+
+    <!-- iOS PWA Installation Banner / Modal -->
+    <div id="iosGuide" class="hidden absolute inset-0 bg-slate-950/95 backdrop-blur-md z-50 p-6 flex-col justify-center items-center text-center transition-all">
+      <div class="w-16 h-16 bg-emerald-500/20 text-emerald-400 rounded-3xl flex items-center justify-center mb-4 border border-emerald-500/30">
+        <i data-lucide="smartphone" class="w-8 h-8"></i>
+      </div>
+      <h3 class="text-xl font-bold text-white mb-2">زێدەکرن بۆ سەر شاشەی (iOS)</h3>
+      <p class="text-sm text-slate-300 mb-6 leading-relaxed">
+        بۆ وێ چەندێ ئەپڵیکەیشنا <strong>زاخو ٢٤</strong> ل سەر ئایفۆنێ وەک ئەپەکا فەرمی کار بکەت:
+      </p>
+      <div class="space-y-4 text-right w-full bg-slate-900 p-4 rounded-2xl border border-slate-800 text-xs text-slate-300 mb-6">
+        <div class="flex items-center gap-3">
+          <span class="w-6 h-6 rounded-full bg-emerald-500/20 text-emerald-400 flex items-center justify-center font-bold">١</span>
+          <span>ل خوارا سفاری (Safari) کلیکێ ل سەر دوگمەیا <strong>Share <i data-lucide="share" class="inline w-3 h-3"></i></strong> بکە.</span>
+        </div>
+        <div class="flex items-center gap-3">
+          <span class="w-6 h-6 rounded-full bg-emerald-500/20 text-emerald-400 flex items-center justify-center font-bold">٢</span>
+          <span>بچە خوارێ و هەلبژێرە <strong>Add to Home Screen</strong>.</span>
+        </div>
+        <div class="flex items-center gap-3">
+          <span class="w-6 h-6 rounded-full bg-emerald-500/20 text-emerald-400 flex items-center justify-center font-bold">٣</span>
+          <span>کلیکێ ل سەر <strong>Add</strong> بکه ل سەرێ دەستێ ڕاستێ.</span>
+        </div>
+      </div>
+      <button onclick="toggleiOSGuide()" class="w-full py-3 bg-emerald-500 text-slate-950 rounded-xl font-bold">تێگەهشتم</button>
+    </div>
+
+    <!-- Main Dynamic Scrollable Content -->
+    <main class="flex-1 overflow-y-auto p-4 space-y-5">
+      
+      <!-- Quick Stats -->
+      <div class="grid grid-cols-2 gap-3">
+        <div class="bg-slate-900 p-4 rounded-2xl border border-slate-800">
+          <p class="text-xs text-slate-400 font-medium">کۆما عەقاراتان</p>
+          <p class="text-2xl font-black text-white mt-1" id="totalProps">14</p>
+          <span class="text-[10px] text-emerald-400 font-bold">چالاک ل بازاڕی</span>
+        </div>
+        <div class="bg-slate-900 p-4 rounded-2xl border border-slate-800">
+          <p class="text-xs text-slate-400 font-medium">داخوازێن موشتەریان</p>
+          <p class="text-2xl font-black text-white mt-1">8</p>
+          <span class="text-[10px] text-teal-400 font-bold">ئەمڕۆ</span>
+        </div>
+      </div>
+
+      <!-- Sector Filters (Zakho Locations) -->
+      <div>
+        <h2 class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">کەرەتێن زاخۆ</h2>
+        <div class="flex gap-2 overflow-x-auto pb-2 scrollbar-none text-xs">
+          <button class="px-3 py-2 rounded-xl bg-emerald-500 text-slate-950 font-bold whitespace-nowrap">هەمی</button>
+          <button class="px-3 py-2 rounded-xl bg-slate-900 text-slate-300 border border-slate-800 whitespace-nowrap">تلكه بەر ٣</button>
+          <button class="px-3 py-2 rounded-xl bg-slate-900 text-slate-300 border border-slate-800 whitespace-nowrap">تلكه بەر ٤</button>
+          <button class="px-3 py-2 rounded-xl bg-slate-900 text-slate-300 border border-slate-800 whitespace-nowrap">تلكه بەر ٥</button>
+          <button class="px-3 py-2 rounded-xl bg-slate-900 text-slate-300 border border-slate-800 whitespace-nowrap">شکه فت مارا</button>
+          <button class="px-3 py-2 rounded-xl bg-slate-900 text-slate-300 border border-slate-800 whitespace-nowrap">رکافا نو</button>
+          <button class="px-3 py-2 rounded-xl bg-slate-900 text-slate-300 border border-slate-800 whitespace-nowrap">چەم سیمو</button>
+          <button class="px-3 py-2 rounded-xl bg-slate-900 text-slate-300 border border-slate-800 whitespace-nowrap">نیو زاخو</button>
+          <button class="px-3 py-2 rounded-xl bg-slate-900 text-slate-300 border border-slate-800 whitespace-nowrap">درمستی</button>
+          <button class="px-3 py-2 rounded-xl bg-slate-900 text-slate-300 border border-slate-800 whitespace-nowrap">گوندێ سویسری</button>
+        </div>
+      </div>
+
+      <!-- Featured Property Card Example -->
+      <div class="space-y-3">
+        <h2 class="text-xs font-bold text-slate-400 uppercase tracking-wider">عەقاراتێن داویێ</h2>
+        
+        <!-- Card 1 -->
+        <div class="bg-slate-900 rounded-2xl p-4 border border-slate-800 space-y-3">
+          <div class="flex justify-between items-start">
+            <div>
+              <span class="bg-emerald-500/10 text-emerald-400 text-[10px] font-bold px-2.5 py-1 rounded-md border border-emerald-500/20">عەردێ چاندنێ</span>
+              <h3 class="text-base font-bold text-white mt-2">پارچە عەرد ل تلكه بەر ٣</h3>
+            </div>
+            <p class="text-emerald-400 font-extrabold text-base">$45,000</p>
+          </div>
+          <div class="flex items-center gap-4 text-xs text-slate-400">
+            <span class="flex items-center gap-1"><i data-lucide="map-pin" class="w-3.5 h-3.5 text-slate-500"></i> تلكه بەر ٣</span>
+            <span class="flex items-center gap-1"><i data-lucide="maximize" class="w-3.5 h-3.5 text-slate-500"></i> 4 دونم</span>
+          </div>
+          <div class="pt-2 border-t border-slate-800/80 flex justify-between items-center text-xs">
+            <span class="text-slate-500">مكتب سالم عقارات</span>
+            <button class="text-emerald-400 font-bold flex items-center gap-1">دیتنا هوورکاریان <i data-lucide="chevron-left" class="w-4 h-4"></i></button>
+          </div>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="bg-slate-900 rounded-2xl p-4 border border-slate-800 space-y-3">
+          <div class="flex justify-between items-start">
+            <div>
+              <span class="bg-teal-500/10 text-teal-400 text-[10px] font-bold px-2.5 py-1 rounded-md border border-teal-500/20">ڤێلا / خانوو</span>
+              <h3 class="text-base font-bold text-white mt-2">ڤێلا مۆدێرن ل نیو زاخو</h3>
+            </div>
+            <p class="text-emerald-400 font-extrabold text-base">$125,000</p>
+          </div>
+          <div class="flex items-center gap-4 text-xs text-slate-400">
+            <span class="flex items-center gap-1"><i data-lucide="map-pin" class="w-3.5 h-3.5 text-slate-500"></i> نیو زاخو</span>
+            <span class="flex items-center gap-1"><i data-lucide="maximize" class="w-3.5 h-3.5 text-slate-500"></i> 250 مەتر</span>
+          </div>
+          <div class="pt-2 border-t border-slate-800/80 flex justify-between items-center text-xs">
+            <span class="text-slate-500">کۆنترۆلا زاخو ٢٤</span>
+            <button class="text-emerald-400 font-bold flex items-center gap-1">دیتنا هوورکاریان <i data-lucide="chevron-left" class="w-4 h-4"></i></button>
+          </div>
+        </div>
+
+      </div>
+
+    </main>
+
+    <!-- Bottom Navigation Bar -->
+    <nav class="bg-slate-900/95 backdrop-blur-md border-t border-slate-800 px-6 py-3 flex justify-between items-center pb-safe">
+      <button class="flex flex-col items-center gap-1 text-emerald-400">
+        <i data-lucide="home" class="w-5 h-5"></i>
+        <span class="text-[10px] font-bold">سەرەکی</span>
+      </button>
+      <button class="flex flex-col items-center gap-1 text-slate-400 hover:text-white">
+        <i data-lucide="building" class="w-5 h-5"></i>
+        <span class="text-[10px] font-bold">عەقارات</span>
+      </button>
+      <button class="flex flex-col items-center gap-1 text-slate-400 hover:text-white">
+        <i data-lucide="plus-circle" class="w-5 h-5"></i>
+        <span class="text-[10px] font-bold">زێدەکرن</span>
+      </button>
+      <button class="flex flex-col items-center gap-1 text-slate-400 hover:text-white">
+        <i data-lucide="user" class="w-5 h-5"></i>
+        <span class="text-[10px] font-bold">پڕۆفایل</span>
+      </button>
+    </nav>
+
+  </div>
+
+  <script>
+    lucide.createIcons();
+    function toggleiOSGuide() {
+      const guide = document.getElementById('iosGuide');
+      guide.classList.toggle('hidden');
+      guide.classList.toggle('flex');
+    }
+  </script>
+</body>
+</html>
